@@ -13,7 +13,7 @@ function gerarQRCode() {
   const cpf = getCPFFromURL();
 
   if (cpf) {
-     // Exiba o CPF no console
+     // Exibe  o CPF capturado no console   ENTÃO... ELE VAI CRIAR O QRCOD
      console.log("CPF Capturado:", cpf);
 
     //  código QR com base no CPF

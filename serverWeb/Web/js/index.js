@@ -49,14 +49,14 @@ btnBuscar.addEventListener("click", (e) => {
     const cpf = document.getElementById("InputCPF").value;
     const senha = document.getElementById("InputSenha").value;
 
-    // Função para verificar o login do aluno
-    function VerificarLogin(cpf, senha) { //passando cpf e senha como parametro
+    function VerificarLogin(cpf, senha) {
         fetch(`http://localhost:9000/alunos?cpf=${cpf}&senha=${senha}`)
             .then((resp) => resp.json())
             .then((data) => {
                 if (data.length > 0) {
-                    // Aluno encontrado, redirecionar para a página "Alunos.html"
-                    window.location.href = "./Alunos.html";
+                    // Aluno encontrado, redirecionar para a página "Alunos.html" com o CPF como parâmetro
+                    window.location.href = `./Alunos.html?cpf=${cpf}`;
+                
                 } else {
                     // Aluno não encontrado, exibir mensagem de erro
                     alert("Aluno não encontrado. Verifique o CPF e a senha.");
@@ -66,7 +66,8 @@ btnBuscar.addEventListener("click", (e) => {
                 console.error("Erro na solicitação: " + error);
             });
     }
-
+    
+    
     // Chame a função para verificar o login
     VerificarLogin(cpf, senha);
 });
