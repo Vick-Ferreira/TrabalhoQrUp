@@ -1,27 +1,31 @@
-  // Variável para rastrear se o código QR já foi gerado
-  var qrCodeGerado = false;
+ 
+ 
+ //como o cpf e senha estão sendo passados como paramêtro na url temos que recuperar eles na mesma.
+ // Função para recuperar o CPF da URL
+ function getCPFFromURL() {//nova pesquisa e recuperação de parâmetro
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('cpf');
+}
 
-  // Função que será chamada quando o botão for clicado
-  function gerarQRCode() {
-    // Verifique se o código QR já foi gerado
-    if (qrCodeGerado) {
-      // Se já foi gerado, não faça nada
-      return;
-    }
+// Função para gerar o código QR com base no CPF
+function gerarQRCode() {
+  // Recupere o CPF da URL
+  const cpf = getCPFFromURL();
 
-    // Pega o texto que você deseja codificar no QR Code
-    var textoParaQRCode = "SeuTextoAqui";
+  if (cpf) {
+     // Exiba o CPF no console
+     console.log("CPF Capturado:", cpf);
 
-    // Cria um novo objeto QRCode
+    //  código QR com base no CPF
     var qrcode = new QRCode(document.getElementById("qrcode"), {
-      text: textoParaQRCode,
+      text: cpf,
       width: 128,
       height: 128
     });
-
-    // Atualize a variável para indicar que o código QR foi gerado
-    qrCodeGerado = true;
+  } else {
+    alert("CPF não encontrado na URL.");
   }
+}
 
-  // Associe a função ao evento de clique do botão
-  document.getElementById("generateQRCode").addEventListener("click", gerarQRCode);
+// função para gerar o código QR quando a página for carregada
+window.addEventListener('load', gerarQRCode);

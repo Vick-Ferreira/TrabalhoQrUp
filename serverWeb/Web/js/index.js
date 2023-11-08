@@ -15,7 +15,7 @@ btnCriar.addEventListener("click", (e) => {
     // Criando função para criar um aluno
     function CriarAluno(cpf, senha) {
         // Enviando os dados (CPF e senha) para o servidor e recebendo a resposta.
-        fetch("https://json-seven-gules.vercel.app/alunos", {
+        fetch("http://localhost:9000/alunos", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -50,8 +50,8 @@ btnBuscar.addEventListener("click", (e) => {
     const senha = document.getElementById("InputSenha").value;
 
     // Função para verificar o login do aluno
-    function VerificarLogin(cpf, senha) {
-        fetch(`https://json-seven-gules.vercel.app/alunos?cpf=${cpf}&senha=${senha}`)
+    function VerificarLogin(cpf, senha) { //passando cpf e senha como parametro
+        fetch(`http://localhost:9000/alunos?cpf=${cpf}&senha=${senha}`)
             .then((resp) => resp.json())
             .then((data) => {
                 if (data.length > 0) {
