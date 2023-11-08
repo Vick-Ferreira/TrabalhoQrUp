@@ -27,5 +27,5 @@ function gerarQRCode() {
   }
 }
 
-// função para gerar o código QR quando a página for carregada
-window.addEventListener('load', gerarQRCode);
+ // Associe a função ao evento de clique do botão, gera apos o click
+ document.getElementById("generateQRCode").addEventListener("click", gerarQRCode);
